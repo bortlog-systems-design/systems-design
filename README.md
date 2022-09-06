@@ -24,6 +24,35 @@ Let's design the backend, storage, and API for Twitter in its early form for 999
  - On average, users click like for 20% of tweets that they read and retweet only 5%.
 
 
+#### Example of estimates calculation
+
+Lets calculate required storage for users records:
+
+```
+(user_id [bytes] + user_name [bytes]) * count_of_users
+```
+
+```
+(16 [bytes] + 16[bytes]) * 999 = 31968 [bytes] = 31 [KB]
+```
+
+#### Example of a system diagram
+
+Please use Mermaid diagrams format, since it is [supported](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/) by GitHub.
+For more documentation on Mermaid, go their [website](https://mermaid-js.github.io/mermaid/#/README).
+
+```mermaid
+flowchart LR
+    db[(Database)]
+    be[Twitter BE]
+    android[Android Client]
+    ios[iOS Client]
+    android --> be
+    ios --> be
+    be --> db
+```
+
+
 ### Week 1:
 
 We will design this system's overall architecture and various aspects in the next few months, but for the first week, let's choose application-level protocol and architectural API building approach. 
