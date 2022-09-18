@@ -69,3 +69,13 @@ Provide an example of a tweet creation API call and response using your protocol
 **Task 2:** Make rough estimates of incoming and outgoing network traffic per day and persecond during peak hours.
 
 **Task 3:** Make rough estimates of the bare minimum required storage capacity for users, subscriptions, tweets, and likes if our system will work for three years.
+
+### Week 2:
+
+**Task 1**: Choose a database for your backend.
+
+Choose database type (key-value, document, relational, etc.) and exact implementation (MySQL, Cassandra, MongoDB...), and provide a list of pros and cons for your choice.
+
+**Task 2**: Design the layout of your database depending on its type. Specify the layout/schema of documents, values, or tables; specify what indexes you will use if applicable.
+
+**Task 3**: Create a sequence diagram and API spec a home screen where users can infinitely scroll all tweets from their subscriptions in chronological order from now into the past. Describe how your backend will fetch necessary data from DB and what queries it will use. What will the complexity of one page fetch be, and how many DB queries will you need for one page?
