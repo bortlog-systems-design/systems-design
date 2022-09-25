@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = ".;server";
+
+package server;
+
+service Server {
+  rpc CreateTweet(NewTweetRequest) returns (NewTweetResponse) {}
+
+  rpc GetSingleTweet(GetSingleTweetRequest) returns (GetSingleTweetResponse) {}
+
+  // GetPerson can be used to fetch both my tweets and person's tweets // @todo combining api for "me" and "other person" cannot end well :/
+  rpc GetPerson(GetPersonRequest) returns (GetPersonResponse) {}
+  rpc GetExplore(GetExploreRequest) returns (GetExploreResponse) {}
+  rpc Like(LikeRequest) returns(LikeResponse){}
+  rpc Follow(FollowRequest) returns(FollowResponse){}
+}
+
+//
+// MODELS
+//
+
+
+// the tweet
+message Tweet {
+  string id = 1;
+  User author = 2;
+  google.protobuf.Timestamp created_at = 3;
+  int64 likes = 4;
+  int64 quotes = 5;
+  int64 retweets = 6;
+  bool likedByMe = 7;
+  string payload = 8;
+}
+
+// short info of user
+message User {// represents user on list of tweets
+  string id = 1; // for internal use, do not expose
+  string handle = 2; // @TarasChmut
+  string displayName = 3; // T
+  bool verified = 4; // user has verified badge
+  // @todo: avatar storage -- upload, download, scale etc. for now assume its acceptable url
+  string avatar = 5; // link to avatar picture
+}
+
+// model for user's single page
+message UserDetailed {
+  User user = 1;
+  string description = 2;
+  int64 followers = 3;
+  int64 following = 4;
+  google.protobuf.Timestamp joined_at = 5;
+  string location = 6; // @todo: ?? add separate message here instead string ??
+  string website = 7;
+}
+
+//
+// Request/response messages
+//
+
+message GetPersonResponse {
+  UserDetailed user = 1;
+  repeated Tweet tweets = 2;
+  enum Type {
+    MY = 0; // mine tweets, user field would be empty
+    PERSON = 1; // someone else's tweets, user field can or cannot be empty
+  }
+} // @todo: move "load more tweets" to separate call common for "my tweets" and "person's tweets"
+
+message GetPersonRequest{
+  string id = 1;
+  string load_more_from = 2; // kind of pagination (load more functionality)
+  enum Type {
+    REEL = 0; // persons own infinite list of tweets. inaccessible for others. // @todo combining api for "me" and "other person" cannot end well :/
+    TWEETS = 1; // tweets of specified person
+    LIKES = 2; // tweets liked by person
+    REPLIES = 3; // tweets replied by this person
+    QUOTED = 4; //
+  }
+}
+
+message NewTweetRequest {
+  string payload = 1;
+  string refTweet = 2;
+  enum Type {
+    TWEET = 0;
+    REPLY = 1;
+    QUOTE = 2;
+  }
+  google.protobuf.Timestamp createdAt = 3;
+  map<string, string> Metadata = 4; //
+}
+
+message NewTweetResponse {
+  string id = 1; // string? google.uuid? id of just created tweet
+}
+
+message GetSingleTweetRequest {
+  string id = 1;
+  string load_more_from = 2; // kind of pagination (load more)
+}
+
+message GetSingleTweetResponse {
+  Tweet tweet = 1; // @todo: do not fetch on "load more" requests
+  repeated Tweet replies = 2;
+}
+
+message GetExploreRequest{
+  string id = 1;
+  string load_more_from = 2; // kind of pagination (load more functionality)
+}
+message GetExploreResponse {
+  UserDetailed user = 1;
+  repeated Tweet tweets = 2;
+}
+
+// just like id as we can deduce user by auth layer (probably). Otherwise user_id should be added here
+message LikeRequest {
+  string like_id = 1;
+  enum Type {
+    TWEET = 0;
+    RETWEER = 1;
+  }
+}
+message LikeResponse {}
+
+
+message FollowRequest {
+  string like_id = 1;
+}
+message FollowResponse {}
