@@ -79,3 +79,18 @@ Choose database type (key-value, document, relational, etc.) and exact implement
 **Task 2**: Design the layout of your database depending on its type. Specify the layout/schema of documents, values, or tables; specify what indexes you will use if applicable.
 
 **Task 3**: Create a sequence diagram and API spec a home screen where users can infinitely scroll all tweets from their subscriptions in chronological order from now into the past. Describe how your backend will fetch necessary data from DB and what queries it will use. What will the complexity of one page fetch be, and how many DB queries will you need for one page?
+
+### Week 3:
+
+**Task 1**: Let's formalize our approach to likes and retweets.
+
+Design and provide sequence diagrams and storage schema for a like.
+Design and provide sequence diagrams and storage schema for a retweet.
+Describe how to fetch the count of likes and retweets when we fetch the home screen feed. 
+Describe how to fetch data to render already liked and/or already retweeted states for the home screen feed.
+
+**Task 2**: Let's do a thing that real Twitter still didn't manage to make and release for all users after all these years: Edits.
+
+You have many options, you can edit in place, but then there is a risk that the author will radically change the content of the tweet after it gets a lot of likes/retweets. A more complex way is to preserve edits' history somehow and still have access to older versions. 
+
+Create a sequence diagram and API spec for tweet edits. Describe storage for edits and how you'll fetch them for individual tweet screens and for feed.
