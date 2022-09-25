@@ -85,8 +85,11 @@ Choose database type (key-value, document, relational, etc.) and exact implement
 **Task 1**: Let's formalize our approach to likes and retweets.
 
 Design and provide sequence diagrams and storage schema for a like.
+
 Design and provide sequence diagrams and storage schema for a retweet.
+
 Describe how to fetch the count of likes and retweets when we fetch the home screen feed. 
+
 Describe how to fetch data to render already liked and/or already retweeted states for the home screen feed.
 
 **Task 2**: Let's do a thing that real Twitter still didn't manage to make and release for all users after all these years: Edits.
