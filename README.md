@@ -97,3 +97,15 @@ Describe how to fetch data to render already liked and/or already retweeted stat
 You have many options, you can edit in place, but then there is a risk that the author will radically change the content of the tweet after it gets a lot of likes/retweets. A more complex way is to preserve edits' history somehow and still have access to older versions. 
 
 Create a sequence diagram and API spec for tweet edits. Describe storage for edits and how you'll fetch them for individual tweet screens and for feed.
+
+### Week 4:
+
+This week, we will design subjectively one of the hardest features, but we will have very vague requirements, 
+so you can decide how sophisticated your design should be.
+
+So, a we need to build a "Trending" page for our app. When users open this "Trending" page, 
+they should see an ordered list of topics, words, or phrases that are currently trending on our network. 
+Basically, this should be a list of things that people are talking about, liking, and re-tweeting right now. 
+
+Ideally, this list of topics should be personalized for the current user based on their recent likes, 
+tweets, or people they follow.
