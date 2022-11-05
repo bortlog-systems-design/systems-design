@@ -39,7 +39,7 @@ Firstly, let's define functional and non-functional requirements for our system.
 Basic API:
 ```java
 List<Hashtag> getTopHashtags(K, startTime, endTime);
-    ```
+```
 
 **Non Functional Requirements:**
 
