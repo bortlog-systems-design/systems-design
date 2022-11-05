@@ -163,7 +163,7 @@ for (int i = k - 1; i >= 0; --i) {
     return top;
     }
     }
-    ```
+```
 
 This solution has two significant drawbacks:
 
