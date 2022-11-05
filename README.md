@@ -109,3 +109,13 @@ Basically, this should be a list of things that people are talking about, liking
 
 Ideally, this list of topics should be personalized for the current user based on their recent likes, 
 tweets, or people they follow.
+
+### Week 5:
+
+Original Twitter is going through a very turbulent path, and a lot of users are concerned about the safety of direct messages between users. As you may know, current twitter has no end-to-end encryption, so theoretically, someone within the company can access and read all private messages or even send someone a message in the name of the other person that you trust.
+
+Our app should not be vulnerable to such problems. Let's design storng end-to-end encrypted messaging functionality with open protocol, so even users of alternative apps could send messages to our users if they implement our protocol.
+
+Bonus points if you find a defense mechanism against man-in-the-middle attacks that do not require people to manually compare signatures using another communication channel as Signal and Telegram do.
+
+Additional bonus points if you find a way to replicate end-to-end encrypted conversations to the same account on other devices because some apps do not allow that.
